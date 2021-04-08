@@ -1,4 +1,4 @@
-package java.org.hw3;
+package org.HomeWork3;
 
 import static org.junit.Assert.assertTrue;
 

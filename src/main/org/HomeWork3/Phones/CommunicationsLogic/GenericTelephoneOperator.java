@@ -1,11 +1,12 @@
-package java.org.hw3.Phones.CommunicationsLogic;
+package org.HomeWork3.Phones.CommunicationsLogic;
 
-import java.org.hw3.Phones.Devices.I_Phone;
+import org.HomeWork3.Phones.Devices.I_Phone;
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class GenericTelephoneOperator {
-    private List<I_Phone> clients;
+    private List<I_Phone> clients = new ArrayList<>();
     private int nextNumber = 0;
 
     public int generatePhoneNumber() {
@@ -19,7 +20,7 @@ public class GenericTelephoneOperator {
         clients.add(clientPhone);
     }
 
-    public void sendMessage(Message message) {
+    public void sendMessage(Message message) throws IllegalArgumentException {
         I_Phone receiver = null;
 
         try {

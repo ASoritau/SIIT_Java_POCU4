@@ -1,4 +1,4 @@
-package java.org.hw3.Phones.CommunicationsLogic;
+package org.HomeWork3.Phones.CommunicationsLogic;
 
 public class Message {
     private final int senderNumber;
@@ -17,11 +17,20 @@ public class Message {
         this.messageText = messageText;
     }
 
-    int getReceiverNumber() {
+    public int getReceiverNumber() {
         return receiverNumber;
     }
 
-    int getSenderNumber() {
+    public int getSenderNumber() {
         return senderNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "senderNumber=" + senderNumber +
+                ", receiverNumber=" + receiverNumber +
+                ", messageText='" + messageText + '\'' +
+                '}';
     }
 }
