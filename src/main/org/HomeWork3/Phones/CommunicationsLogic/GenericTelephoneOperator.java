@@ -25,15 +25,26 @@ public class GenericTelephoneOperator {
 
         try {
             receiver = getClientByNumber(message.getReceiverNumber());
+            receiver.receiveMessage(message);
         }
-        catch (Exception exception) {
+        catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
         }
-
-        receiver.receiveMessage(message);
     }
 
-    private I_Phone getClientByNumber(int number) {
+    public void sendPhoneCall(PhoneCall call) throws IllegalArgumentException {
+        I_Phone receiver = null;
+
+        try {
+            receiver = getClientByNumber(call.getReceiver());
+            receiver.receivePhoneCall(call);
+        }
+        catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
+    }
+
+    private I_Phone getClientByNumber(int number) throws IllegalArgumentException {
         for (I_Phone client : clients) {
             if (client.getOwnNumber() == number) {
                 return client;

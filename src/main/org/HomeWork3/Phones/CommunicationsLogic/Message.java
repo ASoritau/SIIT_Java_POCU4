@@ -7,7 +7,7 @@ public class Message {
 
     private final String messageText;
 
-    public Message(int senderNumber, int receiverNumber, String messageText) {
+    public Message(int senderNumber, int receiverNumber, String messageText) throws IllegalArgumentException {
         if (messageText.length() > 500) {
             throw new IllegalArgumentException("The maximum message length is 500 characters!");
         }
