@@ -43,8 +43,9 @@ public abstract class GenericPhone extends PhoneConfigurator implements I_Phone{
     }
 
     // ----------Device Logic----------
-    public void changeOwnNumber(int number) {
+    public void changeOwnNumber(int number, GenericTelephoneOperator operator) {
         ownNumber = number;
+        this.operator = operator;
     }
 
     public int getOwnNumber() {
@@ -96,6 +97,10 @@ public abstract class GenericPhone extends PhoneConfigurator implements I_Phone{
         if (!contacts.contains(contact)) {
             contacts.add(contact);
         }
+    }
+
+    public void addContact(Contact contact) {
+        addContact(contact.getContactNumber(), contact.getFirstName(), contact.getLastName());
     }
 
     // ----------Messaging----------

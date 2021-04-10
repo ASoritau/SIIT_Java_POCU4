@@ -1,6 +1,7 @@
 package org.HomeWork3.Phones.Devices;
 
 import org.HomeWork3.Phones.CommunicationsLogic.Contact;
+import org.HomeWork3.Phones.CommunicationsLogic.GenericTelephoneOperator;
 import org.HomeWork3.Phones.CommunicationsLogic.Message;
 import org.HomeWork3.Phones.CommunicationsLogic.PhoneCall;
 
@@ -8,7 +9,7 @@ import java.util.List;
 
 public interface I_Phone {
     // ----------Device Logic----------
-    void changeOwnNumber(int number);
+    void changeOwnNumber(int number, GenericTelephoneOperator operator);
 
     int getOwnNumber();
 
@@ -18,6 +19,8 @@ public interface I_Phone {
     List<Contact> getContacts();
 
     void addContact(int number, String firstName, String lastName);
+
+    void addContact(Contact contact);
 
     // ----------Messaging----------
     void receiveMessage(Message message);

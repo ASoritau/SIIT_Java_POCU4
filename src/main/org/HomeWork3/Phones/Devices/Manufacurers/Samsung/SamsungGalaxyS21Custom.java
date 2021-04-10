@@ -1,10 +1,11 @@
 package org.HomeWork3.Phones.Devices.Manufacurers.Samsung;
 
 import org.HomeWork3.Phones.CommunicationsLogic.GenericTelephoneOperator;
+import org.HomeWork3.Phones.Devices.I_Phone;
 import org.HomeWork3.Phones.PhysicalProperties.Color;
 import org.HomeWork3.Phones.PhysicalProperties.Material;
 
-public class SamsungGalaxyS21Custom extends SamsungPhone{
+public class SamsungGalaxyS21Custom extends SamsungPhone implements I_Phone {
     public SamsungGalaxyS21Custom() {
         super(Color.Gold, Material.Glass,"Galaxy S21 Custom", 95);
     }

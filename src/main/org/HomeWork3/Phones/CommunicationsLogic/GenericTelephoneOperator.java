@@ -16,12 +16,12 @@ public class GenericTelephoneOperator {
     }
 
     public void addClient(I_Phone clientPhone) {
-        clientPhone.changeOwnNumber(generatePhoneNumber());
+        clientPhone.changeOwnNumber(generatePhoneNumber(), this);
         clients.add(clientPhone);
     }
 
     public void sendMessage(Message message) throws IllegalArgumentException {
-        I_Phone receiver = null;
+        I_Phone receiver;
 
         try {
             receiver = getClientByNumber(message.getReceiverNumber());
@@ -33,7 +33,7 @@ public class GenericTelephoneOperator {
     }
 
     public void sendPhoneCall(PhoneCall call) throws IllegalArgumentException {
-        I_Phone receiver = null;
+        I_Phone receiver;
 
         try {
             receiver = getClientByNumber(call.getReceiver());
