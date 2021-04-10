@@ -4,34 +4,41 @@ import org.HomeWork3.Phones.CommunicationsLogic.Contact;
 import org.HomeWork3.Phones.CommunicationsLogic.GenericTelephoneOperator;
 import org.HomeWork3.Phones.CommunicationsLogic.Message;
 import org.HomeWork3.Phones.CommunicationsLogic.PhoneCall;
+import org.HomeWork3.Phones.PhysicalProperties.Color;
+import org.HomeWork3.Phones.PhysicalProperties.Material;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-public class GenericPhone implements I_Phone{
-    private List<Contact> contacts = new ArrayList<>();
+public abstract class GenericPhone extends PhoneConfigurator implements I_Phone{
+    protected List<Contact> contacts = new ArrayList<>();
 
-    private List<Message> messages = new ArrayList<>();
+    protected List<Message> messages = new ArrayList<>();
 
-    private List<PhoneCall> callLog = new ArrayList<>();
+    protected List<PhoneCall> callLog = new ArrayList<>();
 
-    private int ownNumber;
+    protected int ownNumber;
 
-    private String phoneBrand;
+    protected GenericTelephoneOperator operator;
 
-    private String phoneModel;
+    protected final int batteryCapacity;
 
-    GenericTelephoneOperator operator;
+    protected int remainingBattery;
 
-    public GenericPhone(String brand, String model) {
-        this.phoneBrand = brand;
-        this.phoneModel = model;
+    protected final String IMEI;
+
+    public GenericPhone(Color color, Material material, String brand, String model, int batteryCapacity) {
+        super(color, material, brand, model);
+        this.batteryCapacity = batteryCapacity;
+        IMEI = generateIMEI();
     }
 
-    public GenericPhone(String brand, String model, GenericTelephoneOperator operator) {
-        this.phoneBrand = brand;
-        this.phoneModel = model;
+    public GenericPhone(Color color, Material material, String brand, String model, int batteryCapacity, GenericTelephoneOperator operator) {
+        super(color, material, brand, model);
         this.operator = operator;
+        IMEI = generateIMEI();
+        this.batteryCapacity = batteryCapacity;
         operator.addClient(this);
     }
 
@@ -42,6 +49,30 @@ public class GenericPhone implements I_Phone{
 
     public int getOwnNumber() {
         return ownNumber;
+    }
+
+    public int getRemainingBattery() {
+        return remainingBattery;
+    }
+
+    public void chargePhone(int chargeTime) {
+        updateRemainingBattery(chargeTime);
+    }
+
+    protected void updateRemainingBattery(int timeToAdd) {
+        remainingBattery = remainingBattery + timeToAdd;
+    }
+
+    private String generateIMEI() {
+        int length = 15;
+        StringBuilder imeiBuilder = new StringBuilder();
+
+        for (int i = 0; i < length; i++) {
+            int digit = new Random().nextInt(10);
+            imeiBuilder.append(i);
+        }
+
+        return imeiBuilder.toString();
     }
 
     // ----------Contacts----------
@@ -78,6 +109,7 @@ public class GenericPhone implements I_Phone{
         try {
             operator.sendMessage(message);
             messages.add(message);
+            updateRemainingBattery(-1);
         }
         catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
@@ -107,6 +139,7 @@ public class GenericPhone implements I_Phone{
         try {
             operator.sendPhoneCall(call);
             callLog.add(call);
+            updateRemainingBattery(-2);
         }
         catch (Exception exception) {
 

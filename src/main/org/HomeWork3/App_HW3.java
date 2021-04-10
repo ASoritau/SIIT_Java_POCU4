@@ -2,7 +2,9 @@ package org.HomeWork3;
 
 import org.HomeWork3.Phones.CommunicationsLogic.GenericTelephoneOperator;
 import org.HomeWork3.Phones.CommunicationsLogic.Message;
-import org.HomeWork3.Phones.Devices.GenericPhone;
+import org.HomeWork3.Phones.Devices.I_Phone;
+import org.HomeWork3.Phones.Devices.Manufacurers.Nokia.Nokia7plus;
+import org.HomeWork3.Phones.PhysicalProperties.Color;
 
 import java.util.List;
 
@@ -16,8 +18,8 @@ public class App_HW3
     {
         GenericTelephoneOperator defaultOperator = new GenericTelephoneOperator();
 
-        GenericPhone phone1 = new GenericPhone("Nokia", "7 plus", defaultOperator);
-        GenericPhone phone2 = new GenericPhone("Samsung", "Galaxy S10", defaultOperator);
+        I_Phone phone1 = new Nokia7plus(defaultOperator);
+        I_Phone phone2 = new Nokia7plus(Color.White, defaultOperator);
 
         phone1.sendMessage(phone2.getOwnNumber(), "Salut! Ajung in 5 min.");
         phone1.sendMessage(phone2.getOwnNumber(), "Ajung in 2 min.");

@@ -12,6 +12,8 @@ public interface I_Phone {
 
     int getOwnNumber();
 
+    int getRemainingBattery();
+
     // ----------Contacts----------
     List<Contact> getContacts();
 
@@ -26,6 +28,7 @@ public interface I_Phone {
 
     List<Message> getConversationWithNumber(int number);
 
+    // ----------Calls----------
     void callNumber(int number);
 
     void callContact(Contact contact);
