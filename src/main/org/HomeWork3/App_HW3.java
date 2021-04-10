@@ -52,6 +52,7 @@ public class App_HW3
         // Invalid phone call and message (validate the program does not crash)
         phone1.sendMessage(142, "Message");
         phone3.callNumber(15);
+        phone2.callNumber(3);
 
         // Printing results
         System.out.println("\n Phone1 message thread with Phone2");
